@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\CityController;
+
 
 
 /*
@@ -31,3 +33,8 @@ Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
+// routes/web.php
+
+
+Route::get('/admin/city', [CityController::class, 'create'])->name('admin.city.create');
+Route::post('/admin/city', [CityController::class, 'store'])->name('admin.city.store');
