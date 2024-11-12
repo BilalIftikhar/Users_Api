@@ -70,7 +70,7 @@
                 <a class="nav-link" href="{{ route('admin.crop.create') }}">Add Crop</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Settings</a>
+                <a class="nav-link" href="{{ route('admin.agricultural_equipment.create') }}">Add Agriculture Equipment</a>
             </li>
         </ul>
     </div>

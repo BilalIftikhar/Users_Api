@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserDataController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\AgriculturalEquipmentController;
+
 
 
 
@@ -29,3 +31,6 @@ Route::middleware('auth:sanctum')->get('/user-details/{cnic}', [UserDataControll
 Route::middleware('auth:sanctum')->post('/edit-profile/{cnic}', [UserDataController::class, 'editProfile']);
 Route::middleware('auth:sanctum')->delete('/delete-account/{cnic}', [UserDataController::class, 'deleteAccount']);
 
+// routes/api.php
+
+Route::get('/agricultural-equipment', [AgriculturalEquipmentController::class, 'index']);

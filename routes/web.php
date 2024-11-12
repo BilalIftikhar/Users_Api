@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CropController;
+use App\Http\Controllers\AgriculturalEquipmentController;
+
 
 
 
@@ -56,3 +58,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Other routes if needed...
 });
+// routes/web.php
+
+Route::prefix('admin')->group(function () {
+    Route::get('/agricultural-equipment/create', [AgriculturalEquipmentController::class, 'create'])->name('admin.agricultural_equipment.create');
+    Route::post('/agricultural-equipment/store', [AgriculturalEquipmentController::class, 'store'])->name('admin.agricultural_equipment.store');
+});
+
