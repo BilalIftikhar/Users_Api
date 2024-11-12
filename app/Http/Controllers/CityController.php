@@ -25,5 +25,15 @@ class CityController extends Controller
 
         return redirect()->route('admin.city.create')->with('success', 'City added successfully!');
     }
-}
+    public function index()
+    {
+        // Fetch all cities from the database
+        $cities = City::all();
 
+        // Return the cities in a JSON format
+        return response()->json([
+            'success' => true,
+            'data' => $cities
+        ]);
+    }
+}

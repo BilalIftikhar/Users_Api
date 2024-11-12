@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\CropController;
+
 
 
 
@@ -18,7 +20,8 @@ use App\Http\Controllers\CityController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('admin.admin_register');
 });
 Route::get('/admin/register', function () {
     return view('admin.admin_register');
@@ -38,3 +41,18 @@ Route::get('/admin/dashboard', function () {
 
 Route::get('/admin/city', [CityController::class, 'create'])->name('admin.city.create');
 Route::post('/admin/city', [CityController::class, 'store'])->name('admin.city.store');
+Route::get('/admin/cities', [CityController::class, 'index']);
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Route for displaying the crop creation form
+    Route::get('/crop/create', [CropController::class, 'create'])->name('crop.create');
+
+    // Route for handling the crop form submission
+    Route::post('/crop/store', [CropController::class, 'store'])->name('crop.store');
+    Route::get('/crops', [CropController::class, 'index']);
+
+
+    // Other routes if needed...
+});

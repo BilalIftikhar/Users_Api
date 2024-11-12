@@ -1,10 +1,12 @@
+<!-- resources/views/add_crop.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add City</title>
+    <title>Add Crop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -55,7 +57,6 @@
 </head>
 
 <body>
-
     <!-- Sidebar -->
     <div class="sidebar">
         <h3 class="text-center text-white">Admin Panel</h3>
@@ -78,7 +79,7 @@
     <div class="content-area">
         <div class="container">
             <div class="card">
-                <div class="card-header">Add City</div>
+                <div class="card-header">Add Crop</div>
                 <div class="card-body">
                     <!-- Success Message -->
                     @if(session('success'))
@@ -99,23 +100,18 @@
                     @endif
 
                     <!-- Form for Adding Crop -->
-                    <form action="{{ route('admin.city.store') }}" method="POST">
+                    <form action="{{ route('admin.crop.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">City Name</label>
+                            <label for="name" class="form-label">Crop Name</label>
                             <input type="text" name="name" class="form-control" id="name" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add City</button>
+                        <button type="submit" class="btn btn-primary">Add Crop</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>
