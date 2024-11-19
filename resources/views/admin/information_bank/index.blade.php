@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agricultural Equipment</title>
+    <title>Informationn Equipment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -83,28 +83,24 @@
 
 <body>
     @include('admin.partials.sidebar')
-
     <div class="container mt-5 me-5">
-        <h2>Agricultural Equipment</h2>
 
-        <!-- Success Message -->
+        <h2>Information Bank Entries</h2>
+
         @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+        <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <!-- Add Equipment Button -->
         <div class="mt-5">
-            <a href="{{ route('admin.agricultural_equipment.create') }}" class="btn btn-primary">+ Add Equipment</a>
+
+            <a href="{{ route('admin.information_bank.create') }}" class="btn btn-primary mb-3">+ Add Entry</a>
         </div>
 
-        <!-- Equipment Table -->
-        <table class="table table-bordered mt-2">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Title</th>
                     <th>Description</th>
                     <th>Picture</th>
                     <th>Audio Link</th>
@@ -112,30 +108,26 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($equipment as $equip)
+                @forelse($entries as $entry)
                 <tr>
-                    <td>{{ $loop->iteration + $equipment->firstItem() - 1 }}</td>
-                    <td>{{ $equip->name }}</td>
-                    <td>{{ $equip->description }}</td>
+                    <td>{{ $loop->iteration + $entries->firstItem() - 1 }}</td>
+                    <td>{{ $entry->name }}</td>
+                    <td>{{ Str::limit($entry->description, 50) }}</td>
                     <td>
-                        @if($equip->picture)
-                        <img src="{{ asset('storage/' . $equip->picture) }}" alt="Equipment" style="max-width: 100px;">
-
-
-                        @else
-                        No Image
+                        @if($entry->picture)
+                        <img src="{{ asset('storage/' . $entry->picture) }}" alt="Image" style="max-width: 100px;">
                         @endif
                     </td>
                     <td>
-                        @if($equip->audio_link)
-                        <a href="{{ $equip->audio_link }}" target="_blank">Audio</a>
+                        @if($entry->audio_link)
+                        <a href="{{ $entry->audio_link }}" target="_blank">Audio</a>
                         @else
                         No Audio
                         @endif
                     </td>
                     <td>
-                        @if($equip->video_link)
-                        <a href="{{ $equip->video_link }}" target="_blank">Video</a>
+                        @if($entry->video_link)
+                        <a href="{{ $entry->video_link }}" target="_blank">Video</a>
                         @else
                         No Video
                         @endif
@@ -143,15 +135,14 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="text-center">No equipment found.</td>
+                    <td colspan="4" class="text-center">No entries found.</td>
                 </tr>
                 @endforelse
             </tbody>
         </table>
 
-        <!-- Pagination Links -->
-        <div class="d-flex justify-content-center mt-3">
-            {{ $equipment->links('') }}
+        <div class="d-flex justify-content-center">
+            {{ $entries->links() }}
         </div>
     </div>
 </body>

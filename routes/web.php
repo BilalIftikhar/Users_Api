@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CropController;
 use App\Http\Controllers\AgriculturalEquipmentController;
+use App\Http\Controllers\Admin\InformationBankController;
+
 
 
 
@@ -68,4 +70,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/agricultural-equipment', [AgriculturalEquipmentController::class, 'index'])->name('admin.agricultural_equipment.index');
     Route::get('/agricultural-equipment/create', [AgriculturalEquipmentController::class, 'create'])->name('admin.agricultural_equipment.create');
     Route::post('/agricultural-equipment/store', [AgriculturalEquipmentController::class, 'store'])->name('admin.agricultural_equipment.store');
+});
+
+Route::prefix('admin/information-bank')->name('admin.information_bank.')->group(function () {
+    Route::get('/', [InformationBankController::class, 'index'])->name('index');
+    Route::get('/create', [InformationBankController::class, 'create'])->name('create');
+    Route::post('/store', [InformationBankController::class, 'store'])->name('store');
 });

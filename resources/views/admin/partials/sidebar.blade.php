@@ -13,5 +13,9 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.agricultural_equipment.index') }}">Agriculture Equipment</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.information_bank.index') }}">information bank </a>
+        </li>
+
     </ul>
 </div>
