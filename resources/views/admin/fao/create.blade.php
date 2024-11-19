@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Rental Machinery</title>
+    <title>Add FAO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -82,16 +80,8 @@
     @include('admin.partials.sidebar')
 
     <div class="container mt-5 me-5">
-        <h2 class="mb-4">Add Rental Machinery</h2>
+        <h2>Add FAO</h2>
 
-        <!-- Success Message -->
-        @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
-
-        <!-- Validation Errors -->
         @if($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -102,55 +92,45 @@
         </div>
         @endif
 
-        <!-- Form -->
-        <form action="{{ route('admin.rental_machinery.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.fao.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Machinery Name</label>
+                <label for="name" class="form-label">Name</label>
                 <input type="text" name="name" class="form-control" id="name" required>
             </div>
-
+            <div class="mb-3">
+                <label for="picture" class="form-label">Picture</label>
+                <input type="file" name="picture" class="form-control" id="picture">
+            </div>
             <div class="mb-3">
                 <label for="phone_number" class="form-label">Phone Number</label>
                 <input type="text" name="phone_number" class="form-control" id="phone_number" required>
             </div>
-
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
-                <input type="text" name="location" class="form-control" id="location">
+                <input type="text" name="location" class="form-control" id="location" required>
             </div>
-
-            <div class="form-group">
-                <label for="city_id">City</label>
+            <div class="mb-3">
+                <label for="city_id" class="form-label">City</label>
                 <select name="city_id" id="city_id" class="form-control" required>
+                    <option value="">Select a City</option>
                     @foreach($cities as $city)
                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                     @endforeach
                 </select>
             </div>
 
-
             <div class="mb-3">
                 <label for="services" class="form-label">Services</label>
                 <textarea name="services" class="form-control" id="services"></textarea>
             </div>
-
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea name="description" class="form-control" id="description"></textarea>
             </div>
-
-            <div class="mb-3">
-                <label for="picture" class="form-label">Picture</label>
-                <input type="file" name="picture" class="form-control" id="picture">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Add Machinery</button>
+            <button type="submit" class="btn btn-primary">Add FAO</button>
         </form>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

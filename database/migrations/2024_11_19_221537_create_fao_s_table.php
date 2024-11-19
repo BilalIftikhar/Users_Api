@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRentalMachineryTable extends Migration
+class CreateFaoSTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreateRentalMachineryTable extends Migration
      */
     public function up()
     {
-        Schema::create('rental_machineries', function (Blueprint $table) {
+        Schema::create('f_a_o_s', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Machinery name
+            $table->string('name'); // Name of the FAO entry
             $table->string('phone_number'); // Contact number
-            $table->string('location'); // Physical location
+            $table->string('location'); // Location of FAO
+            $table->string('services')->nullable(); // List of services (optional)
+            $table->text('description')->nullable(); // Description (optional)
             $table->unsignedBigInteger('city_id'); // City foreign key
-            $table->text('services'); // List of services (JSON or comma-separated)
-            $table->text('description')->nullable(); // Additional information
-            $table->string('picture')->nullable(); // Picture path
-            $table->timestamps();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+
+            $table->string('picture')->nullable(); // Path to the picture (optional)
+            $table->timestamps(); // Created and updated timestamps
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -35,7 +35,6 @@ class CreateRentalMachineryTable extends Migration
      */
     public function down()
     {
-
-        Schema::dropIfExists('rental_machineries');
+        Schema::dropIfExists('f_a_o_s');
     }
 }

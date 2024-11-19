@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\InformationBankController;
 use App\Http\Controllers\Admin\RentalMachineryController;
 use App\Http\Controllers\Admin\SalesMarketController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\FAOController;
+
 
 
 
@@ -100,3 +102,20 @@ Route::prefix('admin')->group(function () {
     Route::get('/companies/create', [CompanyController::class, 'create'])->name('admin.company.create');
     Route::post('/companies/store', [CompanyController::class, 'store'])->name('admin.company.store');
 });
+
+Route::prefix('admin')->group(function () {
+    Route::get('/fao', [FAOController::class, 'index'])->name('admin.fao.index');
+    Route::get('/fao/create', [FAOController::class, 'create'])->name('admin.fao.create');
+    Route::post('/fao/store', [FAOController::class, 'store'])->name('admin.fao.store');
+});
+use App\Http\Controllers\NewsController;
+
+Route::prefix('admin')->group(function () {
+    Route::get('/news', [NewsController::class, 'index'])->name('admin.news.index');
+    Route::get('/news/create', [NewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/news/store', [NewsController::class, 'store'])->name('admin.news.store');
+});
+
+
+
+

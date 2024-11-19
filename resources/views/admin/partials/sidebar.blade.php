@@ -25,6 +25,12 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.company.index') }}">Company </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.fao.index') }}">FAO </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.news.index') }}">News </a>
+        </li>
 
     </ul>
 </div>

@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\InformationBankController;
 use App\Http\Controllers\Admin\RentalMachineryController;
 use App\Http\Controllers\Admin\SalesMarketController;
 use App\Http\Controllers\Api\CompanyApiController;
+use App\Http\Controllers\Admin\FAOController;
+use App\Http\Controllers\Api\NewsController;
+
 
 
 
@@ -50,3 +53,8 @@ Route::prefix('companies')->group(function () {
     Route::get('/', [CompanyApiController::class, 'index']); // Default: fetch all
     Route::get('/filter', [CompanyApiController::class, 'filter']); // Filtered by city or name
 });
+
+Route::get('/fao', [FAOController::class, 'apiIndex']); // Default API
+Route::get('/fao/filter', [FAOController::class, 'apiFilter']); // Filtered API
+
+Route::get('/news', [NewsController::class, 'index']);
