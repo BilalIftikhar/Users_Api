@@ -6,6 +6,8 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\CropController;
 use App\Http\Controllers\AgriculturalEquipmentController;
 use App\Http\Controllers\Admin\InformationBankController;
+use App\Http\Controllers\Admin\RentalMachineryController;
+
 
 
 
@@ -76,4 +78,9 @@ Route::prefix('admin/information-bank')->name('admin.information_bank.')->group(
     Route::get('/', [InformationBankController::class, 'index'])->name('index');
     Route::get('/create', [InformationBankController::class, 'create'])->name('create');
     Route::post('/store', [InformationBankController::class, 'store'])->name('store');
+});
+Route::prefix('admin/rental-machinery')->name('admin.rental_machinery.')->group(function () {
+    Route::get('/', [RentalMachineryController::class, 'index'])->name('index');
+    Route::get('/create', [RentalMachineryController::class, 'create'])->name('create');
+    Route::post('/store', [RentalMachineryController::class, 'store'])->name('store');
 });

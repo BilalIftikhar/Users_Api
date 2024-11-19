@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\UserDataController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\AgriculturalEquipmentController;
 use App\Http\Controllers\Admin\InformationBankController;
+use App\Http\Controllers\Admin\RentalMachineryController;
+
 
 
 
@@ -37,3 +39,4 @@ Route::middleware('auth:sanctum')->delete('/delete-account/{cnic}', [UserDataCon
 
 Route::get('/agricultural-equipment', [AgriculturalEquipmentController::class, 'getAgricultureEquipment']);
 Route::get('/information-bank', [InformationBankController::class, 'fetchAll']);
+Route::get('/rental-machinery', [RentalMachineryController::class, 'fetchAll']);
