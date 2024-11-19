@@ -41,27 +41,31 @@ Route::get('/admin/dashboard', function () {
 // routes/web.php
 
 
-Route::get('/admin/city', [CityController::class, 'create'])->name('admin.city.create');
+Route::get('/admin/city', [CityController::class, 'index'])->name('admin.city.index');
+Route::get('/admin/city/create', [CityController::class, 'create'])->name('admin.city.create');
 Route::post('/admin/city', [CityController::class, 'store'])->name('admin.city.store');
-Route::get('/admin/cities', [CityController::class, 'index']);
+Route::get('/admin/cities', [CityController::class, 'getCity']);
 
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
     // Route for displaying the crop creation form
     Route::get('/crop/create', [CropController::class, 'create'])->name('crop.create');
+    Route::get('/crop', [CropController::class, 'index'])->name('crop.index');
+
 
     // Route for handling the crop form submission
     Route::post('/crop/store', [CropController::class, 'store'])->name('crop.store');
-    Route::get('/crops', [CropController::class, 'index']);
+    Route::get('/crops', [CropController::class, 'getCrops']);
 
 
     // Other routes if needed...
 });
 // routes/web.php
 
+
 Route::prefix('admin')->group(function () {
+    Route::get('/agricultural-equipment', [AgriculturalEquipmentController::class, 'index'])->name('admin.agricultural_equipment.index');
     Route::get('/agricultural-equipment/create', [AgriculturalEquipmentController::class, 'create'])->name('admin.agricultural_equipment.create');
     Route::post('/agricultural-equipment/store', [AgriculturalEquipmentController::class, 'store'])->name('admin.agricultural_equipment.store');
 });
-

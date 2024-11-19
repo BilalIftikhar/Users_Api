@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class AgriculturalEquipmentController extends Controller
 {
+    public function index()
+    {
+        // Fetch all equipment with pagination (10 per page)
+        $equipment = AgriculturalEquipment::paginate(10);
+
+        // Return the index view with data
+        return view('admin.agricultural_equipment.index', compact('equipment'));
+    }
     // Display the form to add new equipment
     public function create()
     {
@@ -27,7 +35,10 @@ class AgriculturalEquipmentController extends Controller
         ]);
 
         // Handle file upload if there's an image
-        $picturePath = $request->file('picture') ? $request->file('picture')->store('equipments') : null;
+        $picturePath = $request->file('picture')
+            ? $request->file('picture')->store('equipments', 'public')
+            : null;
+
 
         AgriculturalEquipment::create([
             'name' => $request->name,
@@ -37,14 +48,13 @@ class AgriculturalEquipmentController extends Controller
             'video_link' => $request->video_link,
         ]);
 
-        return redirect()->route('admin.agricultural_equipment.create')->with('success', 'Equipment added successfully.');
+        return redirect()->route('admin.agricultural_equipment.index')->with('success', 'Equipment added successfully.');
     }
 
     // API to get all equipment
-    public function index()
+    public function getAgricultureEquipment()
     {
         $equipments = AgriculturalEquipment::all();
         return response()->json($equipments);
     }
 }
-

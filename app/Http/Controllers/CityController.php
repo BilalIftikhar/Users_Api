@@ -8,6 +8,12 @@ use App\Models\City;
 
 class CityController extends Controller
 {
+
+    public function index()
+    {
+        $cities = City::paginate(10); // Fetch all cities
+        return view('admin.city.index', compact('cities'));
+    }
     public function create()
     {
         return view('admin.city.create');
@@ -23,9 +29,9 @@ class CityController extends Controller
             'name' => $validated['name'],
         ]);
 
-        return redirect()->route('admin.city.create')->with('success', 'City added successfully!');
+        return redirect()->route('admin.city.index')->with('success', 'City added successfully!');
     }
-    public function index()
+    public function getCity()
     {
         // Fetch all cities from the database
         $cities = City::all();

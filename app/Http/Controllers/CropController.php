@@ -15,6 +15,11 @@ class CropController extends Controller
      */
     public function index()
     {
+        $crops = Crop::paginate(10); // Fetch all cities
+        return view('admin..crop.index', compact('crops'));
+    }
+    public function getCrops()
+    {
         $crops = Crop::all();
         return response()->json(['success' => true, 'data' => $crops]);
     }
@@ -36,6 +41,6 @@ class CropController extends Controller
         ]);
 
         $crop = Crop::create(['name' => $request->name]);
-        return redirect()->route('admin.crop.create')->with('success', 'Crop added successfully!');
+        return redirect()->route('admin.crop.index')->with('success', 'Crop added successfully!');
     }
 }

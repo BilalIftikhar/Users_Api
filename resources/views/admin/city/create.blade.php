@@ -57,23 +57,8 @@
 <body>
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <h3 class="text-center text-white">Admin Panel</h3>
-        <ul class="list-unstyled">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.city.create') }}">Add City</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.crop.create') }}">Add Crop</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.agricultural_equipment.create') }}">Add Agriculture Equipment</a>
-            </li>
-        </ul>
-    </div>
+    @include('admin.partials.sidebar')
+
 
     <div class="content-area">
         <div class="container">

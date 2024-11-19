@@ -33,4 +33,4 @@ Route::middleware('auth:sanctum')->delete('/delete-account/{cnic}', [UserDataCon
 
 // routes/api.php
 
-Route::get('/agricultural-equipment', [AgriculturalEquipmentController::class, 'index']);
+Route::get('/agricultural-equipment', [AgriculturalEquipmentController::class, 'getAgricultureEquipment']);
