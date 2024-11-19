@@ -19,6 +19,12 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.rental_machinery.index') }}">Rental machinery </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.sales_market.index') }}">Sale Market </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.company.index') }}">Company </a>
+        </li>
 
     </ul>
 </div>

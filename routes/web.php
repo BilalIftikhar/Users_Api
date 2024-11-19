@@ -7,6 +7,11 @@ use App\Http\Controllers\CropController;
 use App\Http\Controllers\AgriculturalEquipmentController;
 use App\Http\Controllers\Admin\InformationBankController;
 use App\Http\Controllers\Admin\RentalMachineryController;
+use App\Http\Controllers\Admin\SalesMarketController;
+use App\Http\Controllers\Admin\CompanyController;
+
+
+
 
 
 
@@ -83,4 +88,15 @@ Route::prefix('admin/rental-machinery')->name('admin.rental_machinery.')->group(
     Route::get('/', [RentalMachineryController::class, 'index'])->name('index');
     Route::get('/create', [RentalMachineryController::class, 'create'])->name('create');
     Route::post('/store', [RentalMachineryController::class, 'store'])->name('store');
+});
+Route::prefix('admin')->group(function () {
+    Route::get('/sales-market', [SalesMarketController::class, 'index'])->name('admin.sales_market.index');
+    Route::get('/sales-market/create', [SalesMarketController::class, 'create'])->name('admin.sales_market.create');
+    Route::post('/sales-market/store', [SalesMarketController::class, 'store'])->name('admin.sales_market.store');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/companies', [CompanyController::class, 'index'])->name('admin.company.index');
+    Route::get('/companies/create', [CompanyController::class, 'create'])->name('admin.company.create');
+    Route::post('/companies/store', [CompanyController::class, 'store'])->name('admin.company.store');
 });

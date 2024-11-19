@@ -7,6 +7,10 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\AgriculturalEquipmentController;
 use App\Http\Controllers\Admin\InformationBankController;
 use App\Http\Controllers\Admin\RentalMachineryController;
+use App\Http\Controllers\Admin\SalesMarketController;
+use App\Http\Controllers\Api\CompanyApiController;
+
+
 
 
 
@@ -40,3 +44,9 @@ Route::middleware('auth:sanctum')->delete('/delete-account/{cnic}', [UserDataCon
 Route::get('/agricultural-equipment', [AgriculturalEquipmentController::class, 'getAgricultureEquipment']);
 Route::get('/information-bank', [InformationBankController::class, 'fetchAll']);
 Route::get('/rental-machinery', [RentalMachineryController::class, 'fetchAll']);
+Route::get('/sales-market', [SalesMarketController::class, 'apiIndex']);
+
+Route::prefix('companies')->group(function () {
+    Route::get('/', [CompanyApiController::class, 'index']); // Default: fetch all
+    Route::get('/filter', [CompanyApiController::class, 'filter']); // Filtered by city or name
+});
