@@ -39,6 +39,16 @@
             font-weight: bold;
             color: #007bff;
         }
+        .graph-placeholder {
+            height: 200px;
+            background-color: #f5f5f5;
+            border: 1px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #777;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 
@@ -79,7 +89,7 @@
                             <a class="nav-link" href="{{ route('admin.fao.index') }}">FAO  </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.new.index') }}">News  </a>
+                            <a class="nav-link" href="{{ route('admin.news.index') }}">News  </a>
                         </li>
                     </ul>
                 </div>
@@ -87,30 +97,92 @@
 
             <!-- Main content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 content">
-                <h2 class="dashboard-heading">Welcome to the Admin Dashboard</h2>
-                <p class="lead">Here you can manage users, view reports, and adjust settings.</p>
+                <h2 class="dashboard-heading mt-4">Welcome to the Admin Dashboard</h2>
+                <p class="lead">Monitor system activity, manage data, and view reports here.</p>
 
-                <!-- Example of dashboard content -->
+                <!-- Recent Activity Section -->
                 <div class="card mb-4">
                     <div class="card-header">
                         Recent Activity
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>User John Doe registered an account.</li>
-                            <li>User Jane Smith updated her profile.</li>
-                            <li>Admin settings were changed.</li>
+                            <li>New city *Lahore* added to the database.</li>
+                            <li>FAO entry for *Agriculture Tips* created.</li>
+                            <li>Rental machinery listing for *Tractor Model X* added.</li>
+                            <li>User *Jane Doe* updated their profile.</li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- Statistics Section -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Statistics Overview
+                            </div>
+                            <div class="card-body">
+                                <p>Total Cities: 25</p>
+                                <p>Total FAO Entries: 15</p>
+                                <p>Total Rental Machinery Listings: 12</p>
+                                <p>Sales Market Listings: 8</p>
+                                <p>News Articles Published: 10</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder for Chart -->
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                User Registrations
+                            </div>
+                            <div class="card-body">
+                                <div class="graph-placeholder">Graph: User Registrations Over Time</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphs and Reports Section -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Cities Overview
+                            </div>
+                            <div class="card-body">
+                                <div class="graph-placeholder">Graph: Cities Added</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                FAO Insights
+                            </div>
+                            <div class="card-body">
+                                <div class="graph-placeholder">Graph: FAO Entries Trends</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reports Section -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        Statistics
+                        System Reports
                     </div>
                     <div class="card-body">
-                        <p>Total Users: 150</p>
-                        <p>New Registrations Today: 5</p>
+                        <p><strong>Last Backup:</strong> 2024-11-19 10:45 AM</p>
+                        <p><strong>System Status:</strong> Operational</p>
+                        <p><strong>Upcoming Tasks:</strong></p>
+                        <ul>
+                            <li>Integrate API for external news sources.</li>
+                            <li>Update Rental Machinery listing module.</li>
+                            <li>Review new user feedback.</li>
+                        </ul>
                     </div>
                 </div>
             </main>
