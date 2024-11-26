@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 class AuthController extends Controller
@@ -30,16 +31,16 @@ class AuthController extends Controller
     }
     public function Login(Request $request)
     {
-        $validated = $request->validate([
+        // Validate the request
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
 
-        $user = User::where('email', $validated['email'])->first();
-
-        if ($user && Hash::check($validated['password'], $user->password)) {
-            // Login successful, redirect to the admin dashboard
-            return redirect()->route('admin.dashboard'); 
+        // Attempt to log the user in
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate(); // Prevent session fixation
+            return redirect()->route('admin.dashboard'); // Redirect to dashboard
         }
 
         // Login failed, redirect back with an error

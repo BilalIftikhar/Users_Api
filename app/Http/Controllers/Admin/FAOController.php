@@ -66,7 +66,9 @@ class FAOController extends Controller
         if ($request->has('city_id')) {
             $faos->where('city_id', $request->city_id);
         }
-    
+        if ($request->has('name')) {
+            $faos->where('name', 'like', '%' . $request->name . '%');
+        }
         return response()->json($faos->get());
     }
     

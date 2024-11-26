@@ -72,7 +72,7 @@
             </form>
 
             <p class="text-center mt-3">
-                Don’t have an account? <a href="{{ route('admin.register.view') }}">Register here</a>.
+                <!-- Don’t have an account? <a href="{{ route('admin.register.view') }}">Register here</a>. -->
             </p>
         </div>
     </div>
