@@ -109,6 +109,8 @@
                     <th>Picture</th>
                     <th>Audio Link</th>
                     <th>Video Link</th>
+                    <th>Action</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -139,6 +141,14 @@
                         @else
                         No Video
                         @endif
+                    </td>
+                    <td>
+                        <!-- Delete Button with Confirmation -->
+                        <form action="{{ route('admin.agricultural_equipment.destroy', $equip->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this agricultural_equipment?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @empty

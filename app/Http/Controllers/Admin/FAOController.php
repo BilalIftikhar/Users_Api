@@ -71,5 +71,12 @@ class FAOController extends Controller
         }
         return response()->json($faos->get());
     }
+    public function destroy($id)
+    {
+        $Crop = FAO::findOrFail($id);
+        $Crop->delete();
+
+        return redirect()->route('admin.fao.index')->with('success', 'FAO deleted successfully');
+    }
     
 }

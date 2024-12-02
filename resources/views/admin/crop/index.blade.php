@@ -105,6 +105,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -112,6 +114,14 @@
                             <tr>
                                 <td>{{ $loop->iteration + $crops->firstItem() - 1 }}</td>
                                 <td>{{ $crop->name }}</td>
+                                <td>
+                        <!-- Delete Button with Confirmation -->
+                        <form action="{{ route('crops.destroy', $crop->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this crop?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
                             </tr>
                             @empty
                             <tr>

@@ -83,7 +83,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="services">Services</label>
+                <label for="services">Description</label>
                 <textarea name="services" class="form-control" id="services" required></textarea>
             </div>
             <div class="mb-3">

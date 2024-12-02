@@ -98,6 +98,8 @@
                     <th>Picture</th>
                     <th>Location</th>
                     <th>Phone Number</th>
+                    <th>Action</th>
+
 
 
 
@@ -119,6 +121,14 @@
                     </td>
                     <td>{{ $machinery->location }}</td>
                     <td>{{ $machinery->phone_number }}</td>
+                    <td>
+                        <!-- Delete Button with Confirmation -->
+                        <form action="{{ route('admin.rental_machinery.destroy', $machinery->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this rental machinery?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @empty
                 <tr>

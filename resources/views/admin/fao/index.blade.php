@@ -100,6 +100,7 @@
                     <th>Picture</th>
                     <th>Location</th>
                     <th>Phone Number</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -118,6 +119,14 @@
                     </td>
                     <td>{{ $fao->location }}</td>
                     <td>{{ $fao->phone_number }}</td>
+                    <td>
+                        <!-- Delete Button with Confirmation -->
+                        <form action="{{ route('admin.fao.destroy', $fao->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Fao?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
 
                 </tr>
                 @empty

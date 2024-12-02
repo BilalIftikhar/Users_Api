@@ -64,4 +64,11 @@ class SalesMarketController extends Controller
 
         return response()->json($query->get());
     }
+    public function destroy($id)
+    {
+        $Crop = SalesMarket::findOrFail($id);
+        $Crop->delete();
+
+        return redirect()->route('admin.sales_market.index')->with('success', 'sales market deleted successfully');
+    }
 }

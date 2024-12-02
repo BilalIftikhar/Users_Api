@@ -57,4 +57,11 @@ class AgriculturalEquipmentController extends Controller
         $equipments = AgriculturalEquipment::all();
         return response()->json($equipments);
     }
+    public function destroy($id)
+    {
+        $Crop = AgriculturalEquipment::findOrFail($id);
+        $Crop->delete();
+
+        return redirect()->route('admin.agricultural_equipment.index')->with('success', 'agricultural_equipment deleted successfully');
+    }
 }

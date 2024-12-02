@@ -105,6 +105,8 @@
                     <th>Picture</th>
                     <th>Audio Link</th>
                     <th>Video Link</th>
+                    <th>Action</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -131,6 +133,14 @@
                         @else
                         No Video
                         @endif
+                    </td>
+                    <td>
+                        <!-- Delete Button with Confirmation -->
+                        <form action="{{ route('admin.information_bank.destroy', $entry->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this information_bank?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @empty

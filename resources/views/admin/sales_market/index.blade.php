@@ -97,6 +97,8 @@
                     <th>Picture</th>
                     <th>Location</th>
                     <th>Phone Number</th>
+                    <th>Action</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -116,6 +118,14 @@
                     </td>
                     <td>{{ $market->location }}</td>
                     <td>{{ $market->phone_number }}</td>
+                    <td>
+                        <!-- Delete Button with Confirmation -->
+                        <form action="{{ route('admin.sales_market.destroy', $market->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this sales market?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
 
                 </tr>
                 @empty

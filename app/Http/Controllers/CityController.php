@@ -42,4 +42,11 @@ class CityController extends Controller
             'data' => $cities
         ]);
     }
+    public function destroy($id)
+    {
+        $city = City::findOrFail($id);
+        $city->delete();
+
+        return redirect()->route('admin.city.index')->with('success', 'City deleted successfully');
+    }
 }

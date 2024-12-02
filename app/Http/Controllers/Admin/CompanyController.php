@@ -49,4 +49,11 @@ class CompanyController extends Controller
 
         return redirect()->route('admin.company.index')->with('success', 'Company added successfully.');
     }
+    public function destroy($id)
+    {
+        $Crop = Company::findOrFail($id);
+        $Crop->delete();
+
+        return redirect()->route('admin.company.index')->with('success', 'Company deleted successfully');
+    }
 }

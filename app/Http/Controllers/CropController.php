@@ -43,4 +43,11 @@ class CropController extends Controller
         $crop = Crop::create(['name' => $request->name]);
         return redirect()->route('admin.crop.index')->with('success', 'Crop added successfully!');
     }
+    public function destroy($id)
+    {
+        $Crop = Crop::findOrFail($id);
+        $Crop->delete();
+
+        return redirect()->route('admin.crop.index')->with('success', 'Crop deleted successfully');
+    }
 }

@@ -69,11 +69,12 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>City</th>
-                    <th>Services</th>
+                    <th>Description</th>
                     <th>Picture</th>
                     <th>Location</th>
                     <th>Phone Number</th>
                     <th>Website Link</th>
+                    <th>Action</th>
 
 
                 </tr>
@@ -103,6 +104,14 @@
                         @else
                         No Website
                         @endif
+                    </td>
+                    <td>
+                        <!-- Delete Button with Confirmation -->
+                        <form action="{{ route('admin.company.destroy', $company->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this company?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
                     </td>
 
                 </tr>

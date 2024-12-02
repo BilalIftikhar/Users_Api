@@ -63,4 +63,11 @@ class RentalMachineryController extends Controller
 
         return response()->json($query->with('city')->get(), 200);
     }
+    public function destroy($id)
+    {
+        $Crop = RentalMachinery::findOrFail($id);
+        $Crop->delete();
+
+        return redirect()->route('admin.rental_machinery.index')->with('success', 'Rental machinery deleted successfully');
+    }
 }

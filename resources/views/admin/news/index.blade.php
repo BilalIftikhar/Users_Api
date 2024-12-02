@@ -96,6 +96,7 @@
                     <th>Date</th>
                     <th>Picture</th>
                     <th>Details</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -106,6 +107,14 @@
                     <td>{{ $newsItem->date }}</td>
                     <td><img src="{{ asset('storage/'.$newsItem->picture) }}" alt="news image" width="100"></td>
                     <td>{{ $newsItem->detail }}</td>
+                    <td>
+                        <!-- Delete Button with Confirmation -->
+                        <form action="{{ route('admin.news.destroy', $newsItem->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this News?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
 
                 </tr>
                 @endforeach

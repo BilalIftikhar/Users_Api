@@ -108,7 +108,8 @@
             </div>
             <div class="mb-3">
                 <label for="services">Services</label>
-                <textarea name="services" class="form-control" id="services"></textarea>
+                <input type="services" name="services" class="form-control" id="services">
+
             </div>
             <div class="mb-3">
                 <label for="description">Description</label>

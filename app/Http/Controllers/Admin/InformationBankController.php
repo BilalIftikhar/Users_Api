@@ -51,4 +51,11 @@ class InformationBankController extends Controller
     {
         return response()->json(InformationBank::all(), 200);
     }
+    public function destroy($id)
+    {
+        $Crop = InformationBank::findOrFail($id);
+        $Crop->delete();
+
+        return redirect()->route('admin.information_bank.index')->with('success', 'information_bank deleted successfully');
+    }
 }

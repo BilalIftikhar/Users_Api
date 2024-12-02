@@ -40,5 +40,12 @@ public function store(Request $request)
 
     return redirect()->route('admin.news.index')->with('success', 'News added successfully.');
 }
+public function destroy($id)
+    {
+        $Crop = News::findOrFail($id);
+        $Crop->delete();
+
+        return redirect()->route('admin.news.index')->with('success', 'News deleted successfully');
+    }
 
 }
