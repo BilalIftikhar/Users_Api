@@ -4,6 +4,8 @@
 <head>
     <title>Add FAO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+
     <style>
         body {
             background-color: #f4f6f9;
@@ -122,7 +124,7 @@
 
             <div class="mb-3">
                 <label for="services" class="form-label">Services</label>
-                <textarea name="services" class="form-control" id="services"></textarea>
+                <input type="services" name="services" class="form-control" id="services" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
@@ -131,6 +133,23 @@
             <button type="submit" class="btn btn-primary">Add FAO</button>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+
+<script>
+    // Select the input field
+    const servicesInput = document.querySelector('#services');
+
+    // Initialize Tagify on the input
+    new Tagify(servicesInput, {
+        whitelist: [], // Optional: pre-define allowed tags
+        maxTags: 10000,   // Optional: limit number of tags
+        enforceWhitelist: false, // Set to true to allow only pre-defined tags
+        dropdown: {
+            enabled: 1, // Show suggestions after 1 character is typed
+        },
+    });
+</script>
 </body>
 
 </html>

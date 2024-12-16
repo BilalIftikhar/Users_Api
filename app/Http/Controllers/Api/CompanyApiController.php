@@ -15,17 +15,28 @@ class CompanyApiController extends Controller
 
     public function filter(Request $request)
     {
-        $query = Company::query();
+       $query = Company::query();
 
-        if ($request->has('city_id')) {
-            $query->where('city_id', $request->city_id);
-        }
+$cityId = $request->city_id;
+$name = $request->name;
 
-        if ($request->has('name')) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        }
+if ($cityId || $name) {
+    if ($cityId) {
+        $query->where('city_id', $cityId);
+    }
 
-        return response()->json($query->with('city')->get());
+    if ($name) {
+        $query->where('name', 'like', '%' . $name . '%');
+    }
+
+    return response()->json($query->with('city')->get());
+}
+
+// If both are null, return an appropriate response
+return response()->json([
+    'message' => 'No filters provided.',
+    'data' => []
+], 400);
     }
 }
 

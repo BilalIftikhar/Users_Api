@@ -25,31 +25,45 @@ class RentalMachineryController extends Controller
 
     // Store a new machinery listing
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:15',
-            'location' => 'required|string|max:255',
-            'city_id' => 'required|exists:cities,id',
-            'services' => 'required|string',
-            'description' => 'nullable|string',
-            'picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'phone_number' => 'required|string|max:15',
+        'location' => 'required|string|max:255',
+        'city_id' => 'required|exists:cities,id',
+        'services' => 'nullable|string', // Validate as a string (it will be a comma-separated string from the form)
+        'description' => 'nullable|string',
+        'picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+]);
 
-        $picturePath = $request->file('picture') ? $request->file('picture')->store('rental_machinery', 'public') : null;
+    // Convert services to an array
+    $servicesRaw = json_decode($request->services, true); // Decode the JSON string
+    $servicesArray = array_map(function ($item) {
+        return $item['value'] ?? null; // Extract 'value' from each item
+    }, $servicesRaw);
 
-        RentalMachinery::create([
-            'name' => $request->name,
-            'phone_number' => $request->phone_number,
-            'location' => $request->location,
-            'city_id' => $request->city_id,
-            'services' => $request->services,
-            'description' => $request->description,
-            'picture' => $picturePath,
-        ]);
+    // Remove any null values
+    $servicesArray = array_filter($servicesArray);
 
-        return redirect()->route('admin.rental_machinery.index')->with('success', 'Machinery added successfully.');
-    }
+    // Handle the picture upload
+    $picturePath = $request->file('picture') 
+        ? $request->file('picture')->store('rental_machinery', 'public') 
+        : null;
+
+    // Save the data
+    RentalMachinery::create([
+        'name' => $request->name,
+        'phone_number' => $request->phone_number,
+        'location' => $request->location,
+        'city_id' => $request->city_id,
+        'services' => json_encode($servicesArray), // Save services as a JSON array
+        'description' => $request->description,
+        'picture' => $picturePath,
+    ]);
+
+    return redirect()->route('admin.rental_machinery.index')->with('success', 'Machinery added successfully.');
+}
+
 
     // Fetch all machinery via API
     public function fetchAll(Request $request)

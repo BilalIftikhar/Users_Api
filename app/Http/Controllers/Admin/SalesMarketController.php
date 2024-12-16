@@ -36,6 +36,13 @@ class SalesMarketController extends Controller
             'description' => 'nullable|string',
             'picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+        $servicesRaw = json_decode($request->services, true); // Decode the JSON string
+        $servicesArray = array_map(function ($item) {
+            return $item['value'] ?? null; // Extract 'value' from each item
+        }, $servicesRaw);
+    
+        // Remove any null values
+        $servicesArray = array_filter($servicesArray);
 
         // Handle file upload
         $picturePath = $request->file('picture') ? $request->file('picture')->store('sales_market', 'public') : null;
@@ -45,7 +52,7 @@ class SalesMarketController extends Controller
             'phone_number' => $request->phone_number,
             'location' => $request->location,
             'city_id' => $request->city_id,
-            'services' => $request->services,
+            'services' => json_encode($servicesArray),
             'description' => $request->description,
             'picture' => $picturePath,
         ]);

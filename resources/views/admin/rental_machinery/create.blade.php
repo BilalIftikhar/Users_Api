@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Rental Machinery</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+
     <style>
         body {
             background-color: #f4f6f9;
@@ -152,6 +154,25 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+
+<script>
+    // Select the input field
+    const servicesInput = document.querySelector('#services');
+
+    // Initialize Tagify on the input
+    new Tagify(servicesInput, {
+        whitelist: [], // Optional: pre-define allowed tags
+        maxTags: 10000,   // Optional: limit number of tags
+        enforceWhitelist: false, // Set to true to allow only pre-defined tags
+        dropdown: {
+            enabled: 1, // Show suggestions after 1 character is typed
+        },
+    });
+</script>
+
+
 </body>
 
 </html>

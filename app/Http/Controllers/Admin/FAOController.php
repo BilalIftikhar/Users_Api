@@ -36,6 +36,13 @@ class FAOController extends Controller
             'services' => 'nullable|string',
             'description' => 'nullable|string',
         ]);
+        $servicesRaw = json_decode($request->services, true); // Decode the JSON string
+        $servicesArray = array_map(function ($item) {
+            return $item['value'] ?? null; // Extract 'value' from each item
+        }, $servicesRaw);
+    
+        // Remove any null values
+        $servicesArray = array_filter($servicesArray);
 
         $picturePath = $request->file('picture') ? $request->file('picture')->store('faos', 'public') : null;
 
@@ -45,7 +52,7 @@ class FAOController extends Controller
             'phone_number' => $request->phone_number,
             'location' => $request->location,
            'city_id' => $request->city_id, // Save city ID
-            'services' => $request->services,
+            'services' => json_encode($servicesArray),
             'description' => $request->description,
         ]);
 
@@ -63,13 +70,30 @@ class FAOController extends Controller
     {
         $faos = FAO::query();
     
-        if ($request->has('city_id')) {
-            $faos->where('city_id', $request->city_id);
+        // if ($request->has('city_id')) {
+        //     $faos->where('city_id', $request->city_id);
+        // }
+        // if ($request->has('name')) {
+        //     $faos->where('name', 'like', '%' . $request->name . '%');
+        // }
+        $cityId = $request->city_id;
+        $name = $request->name;
+
+    if ($cityId || $name) {
+        if ($cityId) {
+            $faos->where('city_id', $cityId);
         }
-        if ($request->has('name')) {
-            $faos->where('name', 'like', '%' . $request->name . '%');
+
+        if ($name) {
+            $faos->where('name', 'like', '%' . $name . '%');
         }
-        return response()->json($faos->get());
+
+        return response()->json($faos->with('city')->get());
+    }
+    return response()->json([
+        'message' => 'No filters provided.',
+        'data' => []
+    ], 400);
     }
     public function destroy($id)
     {
