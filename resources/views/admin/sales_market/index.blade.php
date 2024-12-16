@@ -107,7 +107,8 @@
                     <td>{{ $loop->iteration + $salesMarkets->firstItem() - 1 }}</td>
                     <td>{{ $market->name }}</td>
                     <td>{{ $market->city->name }}</td>
-                    <td>{{ $market->services }}</td>
+                    <td>{{ implode(', ', $market->services) }} </td>
+
 
                     <td>
                         @if($market->picture)

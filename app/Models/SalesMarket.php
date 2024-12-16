@@ -18,7 +18,9 @@ class SalesMarket extends Model
         'description',
         'picture',
     ];
-
+    protected $casts = [
+        'services' => 'array', // This ensures JSON is cast to an array
+    ];
     public function city()
     {
         return $this->belongsTo(City::class);

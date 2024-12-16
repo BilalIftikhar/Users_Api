@@ -109,7 +109,8 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $fao->name }}</td>
                     <td>{{ $fao->city->name }}</td>
-                    <td>{{ $fao->services }}</td>
+                    <td>{{ implode(', ', $fao->services) }} </td>
+
                     <td>
                         @if($fao->picture)
                         <img src="{{ asset('storage/' . $fao->picture) }}" alt="Image" style="max-width: 100px;">

@@ -111,7 +111,7 @@
                     <td>{{ $loop->iteration + $machineries->firstItem() - 1 }}</td>
                     <td>{{ $machinery->name }}</td>
                     <td>{{ $machinery->city->name }}</td>
-                    <td>{{ $machinery->services }}</td>
+                    <td>{{ implode(', ', $machinery->services) }} </td>
                     <td>
                         @if($machinery->picture)
                         <img src="{{ asset('storage/' . $machinery->picture) }}" alt="Image" style="max-width: 100px;">
