@@ -109,7 +109,12 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $fao->name }}</td>
                     <td>{{ $fao->city->name }}</td>
-                    <td>{{ implode(', ', $fao->services) }} </td>
+                    <td>
+                        {{ is_array(json_decode($fao->services, true)) 
+                            ? implode(',', json_decode($fao->services, true)) 
+                            : $fao->services }}
+                    </td>
+
 
                     <td>
                         @if($fao->picture)

@@ -107,7 +107,11 @@
                     <td>{{ $loop->iteration + $salesMarkets->firstItem() - 1 }}</td>
                     <td>{{ $market->name }}</td>
                     <td>{{ $market->city->name }}</td>
-                    <td>{{ implode(', ', $market->services) }} </td>
+                    <td>
+                        {{ is_array(json_decode($market->services, true)) 
+                            ? implode(',', json_decode($market->services, true)) 
+                            : $market->services }}
+                    </td>
 
 
                     <td>
