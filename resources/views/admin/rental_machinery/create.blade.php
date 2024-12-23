@@ -164,7 +164,7 @@
     // Initialize Tagify on the input
     new Tagify(servicesInput, {
         whitelist: [], // Optional: pre-define allowed tags
-        maxTags: 10000,   // Optional: limit number of tags
+        maxTags: 1000000,   // Optional: limit number of tags
         enforceWhitelist: false, // Set to true to allow only pre-defined tags
         dropdown: {
             enabled: 1, // Show suggestions after 1 character is typed

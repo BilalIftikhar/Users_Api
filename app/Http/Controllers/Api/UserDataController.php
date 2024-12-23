@@ -85,7 +85,11 @@ class UserDataController extends Controller
         if ($request->has('password')) $user->password = Hash::make($request->password);
         if ($request->has('city')) $user->city = $request->city;
         if ($request->has('cultivated_area')) $user->cultivated_area = $request->cultivated_area;
-        if ($request->has('grows')) $user->grows = json_encode($request->grows);
+        if ($request->has('grows')) {
+            // Decode if grows is JSON-encoded
+            $grows = is_string($request->grows) ? json_decode($request->grows, true) : $request->grows;
+            $user->grows = $grows;
+        }
 
         // Handle profile photo upload if present
         if ($request->hasFile('profile_photo_path')) {
@@ -99,7 +103,7 @@ class UserDataController extends Controller
                 $path = $request->file('profile_photo_path')->store('profile_photos');
 
                 // Update the user with the new photo path
-                $user->profile_photo_path = $path;
+                $user->profile_photo_path = 'storage/'.$path;
             }
         }
 

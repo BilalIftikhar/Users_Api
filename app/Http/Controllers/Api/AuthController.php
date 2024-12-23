@@ -13,11 +13,11 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validated = $request->validate([
-            'phoneNumber' => 'required|string',
+            'cnic' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $user = UserData::where('phone_number', $request->phoneNumber)->first();
+        $user = UserData::where('cnic', $request->cnic)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([

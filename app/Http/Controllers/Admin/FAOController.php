@@ -62,7 +62,7 @@ class FAOController extends Controller
     // API: Fetch all FAO entries
     public function apiIndex()
     {
-        return response()->json(FAO::all());
+        return response()->json(FAO::with('city')->get());
     }
 
     // API: Filter FAO entries by city
